@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+
+<!-- table  -->
+
+<div class="">
+<h4 class="text-uppercase card p-3"> Stock</h4>
+
+
+
+    <div class="card mb-4 shadow-lg">
+        <div class="card-body">
+            <div class="table-responsive ">
+                
+                <table class="table table-bordered" id="searchTable"  data-page-length='10' width="100%" cellspacing="0">
+                    <thead>
+                        <tr class="text-center">
+                        <th>srno</th>
+                           
+                            <th>ID</th>
+                            <th>particulars</th>
+                            <th>QTY</th>
+                            <th>Remark</th>
+                            <th>Price</th>
+                            <th>Total</th>                                              
+                            <th>Date</th>
+                      
+                        </tr>
+                    </thead>
+                  
+
+                    <tbody>
+                        {% for stock in stocks %}
+                        <tr class="text-center">
+                            <td>{{forloop.counter}}</td>
+                            
+                            <td>{{ stock.u_id }}</td>
+                            <td>{{ stock.particulars }}</td>
+                            <td>{{ stock.qty }} {{stock.unit}}</td>
+                            <td>{{ stock.remark }}</td>
+                            <td>{{ stock.price }}</td>
+                            <td>{{ stock.total }}</td>
+                            <td>{{ stock.delivery_date }}</td>
+
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock main %}

@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="card">
+    <div class="card-body">
+        <h4 class="">INWORD</h4>
+        <hr>
+        {% for message in messages %}
+     
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            
+                {{message}}
+           
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endfor %}
+        <form action="" id="reForm" method="post" data-cities-url="">{% csrf_token %}
+
+            <div class="row ">
+                <div class="col-md-2 ">
+                    <div class="form-group">
+                        <label for="">ID</label>
+                        <input required type="text" class="form-control" name="id">
+                    </div>
+
+                </div>
+
+              
+                <div class="col-md-2 ">
+                    <div class="form-group">
+                        <label for="">Name Of depositor</label>
+                        <input required type="text" class="form-control" name="name">
+                    </div>
+
+                </div>
+
+                <div class="col-md-2 ">
+                    <div class="form-group">
+                        <label for="">Particulars</label>
+                        <input required type="text" class="form-control" name="particulars">
+                    </div>
+
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <label for="">QTY</label>
+                        <input required type="text" class="form-control" onkeyup="multi()" name="qty" id="qty">
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <label for="">Unit</label>
+                        <select class="form-control" name="unit" id="unit">
+                            <option value="Kg">Kg</option>
+                            <option value="Grams">Grams</option>
+                            <option value="Ltr">Ltr</option>
+                            <option value="Piece">Piece</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2 ">
+                    <div class="form-group">
+                        <label for="">Delivery Date</label>
+                        <input required type="date" class="form-control " name="date">
+                    </div>
+
+                </div>
+                <div class="col-md-2 ">
+                    <div class="form-group">
+                        <label for="">Price</label>
+                        <input required type="text" class="form-control" name="price" id="price" onkeyup="multi()">
+                    </div>
+
+                </div>
+                <div class="col-md-2 ">
+                    <div class="form-group">
+                        <label for="">Total</label>
+                        <input required type="text" class="form-control" name="total" id="total" onkeyup="multi()">
+                    </div>
+
+                </div>
+                <div class="col-md-2 ">
+                    <div class="form-group">
+                        <label for="">Paid</label>
+                        <input required type="text" class="form-control" name="paid" id="paid" onkeyup="remain()">
+                    </div>
+
+                </div>
+                <div class="col-md-2 ">
+                    <div class="form-group">
+                        <label for="">Remaining</label>
+                        <input required type="text" class="form-control" name="remaining" id="remaining"
+                            onkeyup="remain()">
+                    </div>
+
+                </div>
+                <div class="col-md-2 ">
+                    <div class="form-group">
+                        <label for="">Remark</label>
+                        <input required type="text" class="form-control" name="remark">
+                    </div>
+
+                </div>
+
+            </div>
+            <hr>
+
+    </div>
+    <div class="row">
+        <button type="submit" class="btn btn-primary ml-auto mr-5 mb-2">Add</button>
+    </div>
+    </form>
+
+</div>
+
+<div class="card mb-4 shadow-lg">
+    <div class="card-body">
+        <div class="table-responsive ">
+            
+            <table class="table table-bordered" id="searchTable"  data-page-length='10' width="100%" cellspacing="0">
+                <thead>
+                    <tr class="text-center">
+                    <th>SrNo</th>
+                    <th>ID</th>
+                        
+                        <th>Name Of depositor</th>
+                        <th>Particulars</th>
+                        <th>QTY</th>
+                        <th>Delivery Date</th>
+                        <th>Price</th>
+                                          
+                        <th>Total</th>
+                        <th>Paid</th>
+                        <th>Remaining</th>
+                        <th>Remark</th>
+                  
+                    </tr>
+                </thead>
+              
+
+                <tbody>
+                    {% for stock in stocks %}
+                    <tr class="text-center">
+                        <td>{{forloop.counter}}</td>
+                        
+                        <td>{{ stock.u_id }}</td>
+                        <td>{{ stock.name }}</td>
+                        <td>{{ stock.particulars }}</td>
+                        <td>{{ stock.qty }} {{stock.unit}}</td>
+                        <td>{{ stock.delivery_date }}</td>
+                        <td>{{ stock.price }}</td>
+                        <td>{{ stock.total }}</td>
+                        <td>{{ stock.paid }}</td>
+                        <td>{{ stock.remaining }}</td>
+                        <td>{{ stock.remark }}</td>
+                        
+                       
+                      
+                       
+                        
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock main %}

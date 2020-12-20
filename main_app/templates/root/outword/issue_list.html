@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+
+<!-- table  -->
+
+<div class="">
+<h4 class="text-uppercase card p-3"> Issued List</h4>
+
+    <a href="{% url 'issue' %}" class="btn btn-success mb-2 "> New Issue </a>
+
+    <div class="card mb-4 shadow-lg">
+        <div class="card-body">
+            <div class="table-responsive ">
+                
+                <table class="table table-bordered" id="searchTable"  data-page-length='10' width="100%" cellspacing="0">
+                    <thead>
+                        <tr class="text-center">
+                        <th>ID</th>
+                            <th>Department</th>
+                            <th>Name Of Reciver</th>
+                            <th>Particulars</th>
+                            <th>Id</th>
+                            <th>Qty</th>
+                            <th>Issued By</th>
+                            <th>Issued date</th>
+                                              
+                            <th>Remark</th>
+                      
+                        </tr>
+                    </thead>
+                  
+
+                    <tbody>
+                        {% for stock in stocks %}
+                        <tr class="text-center">
+                            <td>{{forloop.counter}}</td>
+                            <td>{{ stock.department }}</td>
+                            <td>{{ stock.name_of_reciver }}</td>
+                            <td>{{ stock.particulars }}</td>
+                            <td>{{ stock.u_id }}</td>
+                            <td>{{ stock.qty }} {{stock.unit}}</td>
+                            <td>{{ stock.issue_by }}</td>
+                            <td>{{ stock.issue_date }}</td>
+                            <td>{{ stock.remark }}</td>
+                           
+                          
+                           
+                            
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock main %}

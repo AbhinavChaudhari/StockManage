@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="card">
+    <div class="card-body">
+        <h4 class="">Issue</h4>
+        <hr>
+        {% for message in messages %}
+     
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            
+                {{message}}
+           
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endfor %}
+        <form action="" id="reForm" method="post"
+            data-cities-url="{% url 'getBatchData' %}">{% csrf_token %}
+           
+            <div class="row ">
+                <div class="col-md-2 ">
+                    <div class="form-group">
+                        <label for="">Department</label>
+                        <!-- <input required type="text" class="form-control" name="department"
+                           > -->
+                        <select name="department"class="form-control" id="department">
+                            {% for clg in name %}
+                            <option>{{clg.name}}</option>
+                            {% endfor %}
+                           
+                        </select>
+                    </div>
+
+                </div>
+                <!-- <div class="col-md-2 ">
+                    <div class="form-group">
+                        <label for="">SrNo</label>
+                        <input required type="text" class="form-control" name="srno" id="srno"
+                           >
+                    </div>
+
+                </div> -->
+                <div class="col-md-2 ">
+                    <div class="form-group">
+                        <label for="">Name Of Reciver</label>
+                        <input required type="text" class="form-control" name="name_of_rec"
+                           >
+                    </div>
+
+                </div>
+                
+               
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Particulars</label>
+                        <input  type="text" list="batchList" name="particulars" id="inputdist" class="form-control"
+                            placeholder="">
+                        <datalist id="batchList">
+                            {% for stock in stocks %}
+                            <option>{{stock.particulars}}</option>
+                            {% endfor %}
+                        </datalist>
+                    </div>
+                </div>
+                <div class="col-md-2 ">
+                    <div class="form-group">
+                        <label for="">ID</label>
+                        <input  type="text" class="form-control" id="u_id" name="u_id"
+                           >
+                    </div>
+
+                </div>
+
+                <div class="col-md-2 ">
+                    <div class="form-group">
+                        <label for="">Qty</label>
+                        <input required type="text" class="form-control" id="qty" name="qty"
+                           >
+                    </div>
+
+                </div>
+                <div class="col-md-2 ">
+                    <div class="form-group">
+                        <label for="">Unit</label>
+                        <input  type="text" class="form-control" id="unit" name="unit"
+                           >
+                    </div>
+
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Issue By</label>
+                        <input required  type="text" class="form-control" name="issue_by"
+                            >
+                    </div>
+                </div>
+                <div class="col-md-2 ">
+                    <div class="form-group">
+                        <label for="">Issue Date</label>
+                        <input required type="date" class="form-control" name="date"
+                           >
+                    </div>
+
+                </div>
+                <div class="col-md-2 ">
+                    <div class="form-group">
+                        <label for="">Remark</label>
+                        <input required type="text" class="form-control" name="remark"
+                           >
+                    </div>
+
+                </div>
+                
+                 </div><hr>
+
+            </div>
+            <div class="row">
+            <button type="submit"  class="btn btn-primary ml-auto mr-5 mb-3">Add</button>
+        </div>
+        </form>
+  
+    
+</div>
+{% endblock main %}
